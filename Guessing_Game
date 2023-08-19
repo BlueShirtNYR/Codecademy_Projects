@@ -1,0 +1,43 @@
+import random
+
+print("Welcome to the Guessing Game!")
+print("\n")
+print("Rules of the game: \n - There is one player and one dealer. \n - The player selects a number from 1-5. \n - The dealer selects a number from 1-5. \n - You get 5 rounds to win as many points as you can. \n   - +3 Points for Player if player's number is the same as the dealer. \n   - +2 Points for Player if player's number is 1 off from dealer. \n   - +1 Point for player if player's number is 2 off from dealer. \n   - No points are awarded otherwise.")
+print("\n")
+print("Are you ready? [y/n]")
+Ready_to_Start = input()
+if Ready_to_Start == "y":
+  print("Great! Let's get this game going!")
+elif Ready_to_Start == "n":
+  print("Well too bad! We're starting anyway!")
+else:
+  print("I don't know what you just said... but anywhoo... we're starting the game!")
+
+#Counter to track which Round of the game we're on. Once it hits 5, then the game is over.
+round_number = 1
+
+#This is the player's score. After each round, points are added to the player's score if they were awarded any points.
+player_score = 0
+
+while round_number < 6:
+  print("\nRound: " + str(round_number)) 
+  print("Pick your number 1-5.")
+  player_choice = int(input())
+  dealer_choice = int(random.randint(1,5))
+  print("You picked: "+ str(player_choice))
+  print("Dealer picked: "+ str(dealer_choice))
+  if player_choice == dealer_choice:
+    player_score += 3
+    print("Congratulations! You win 3 points!")
+  elif ((player_choice - dealer_choice) == 1) or ((player_choice - dealer_choice) == (-1)):
+    player_score += 2
+    print("So close! You win 2 points!")
+  elif ((player_choice - dealer_choice) == 2) or ((player_choice - dealer_choice) == (-2)):
+    player_score += 1
+    print("Almost there, but you still win 1 point!")
+  else:
+    print("Too bad! Not close enough, so no points for you.")
+  print("Player's Current Score: "+ str(player_score))
+  round_number += 1
+
+print("\nThat's the end of the game! \n FINAL SCORE: "+ str(player_score))
